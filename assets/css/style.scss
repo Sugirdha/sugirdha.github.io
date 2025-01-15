@@ -3,12 +3,9 @@
 
 @import "{{ site.theme }}";
 
-.custom-center {
+.center-image-300 {
   display: block;
   margin: 0 auto;
-  max-width: 100%; /* Prevents overflow */
-  height: auto;    /* Maintains aspect ratio */
-  width: 300;
-  // max-width: 300;
+  width: 300px;
 }
 
