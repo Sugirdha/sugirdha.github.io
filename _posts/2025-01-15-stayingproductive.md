@@ -2,7 +2,7 @@
 layout: post
 title: Staying Productive While Learning New Skills
 author: Sugirdha
-tags: productivity,continuous-learning
+tags: productivity, continuous learning
 ---
 
 ![Stay_Productive](/assets/img/250115_stay_productive_4.png)  
