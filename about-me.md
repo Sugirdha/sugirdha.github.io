@@ -26,4 +26,7 @@ I’m a lifelong learner and a creative soul who loves to balance logic with art
 - Reading novels 📚 to unwind and fuel my imagination.  
 
 ## 🔗 Let’s Connect  
-- **LinkedIn**: [Sugirdha on LinkedIn](https://www.linkedin.com/in/sugirdha/)
+- **LinkedIn**: [Sugirdha on LinkedIn](https://www.linkedin.com/in/sugirdha/)  
+- **GitHub**: [Sugirdha on GitHub](https://github.com/Sugirdha)
+
+[back](./)
