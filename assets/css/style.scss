@@ -3,9 +3,10 @@
 
 @import "{{ site.theme }}";
 
-.center-square-image {
-    width: 400px;
-    height: 400px;
-    display: block;
-    margin: 0 auto;
+img.custom-center {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%; /* Prevents overflow */
+  height: auto;    /* Maintains aspect ratio */
 }
+
