@@ -1,7 +1,4 @@
----
-layout: post
-title:  "Welcome to Jekyll!"
----
+
 
 # Staying Productive While Learning New Skills
 
