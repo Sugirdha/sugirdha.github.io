@@ -10,6 +10,8 @@ As someone who proudly identifies as a lifelong learning enthusiast, balancing f
 ![Stay_Productive](/assets/img/250115_stay_productive_4.png)  
 _Tips to help you stay productive while learning new skills._
 
+<!--more-->
+
 ## Set Small, Achievable Goals
 
 This is one of the most effective strategies I’ve found. Whether it’s dedicating just 30 minutes in the morning to study or breaking tasks into smaller pieces, this approach makes the learning process much more manageable. It’s easy to get overwhelmed by the big picture, but focusing on smaller, achievable chunks keeps things from feeling daunting.
