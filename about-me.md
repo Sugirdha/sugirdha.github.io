@@ -2,9 +2,8 @@
 
 I’m an **application developer** with a passion for crafting user-centric applications and solving complex problems with clean, scalable, and reusable code. My journey in tech has been fueled by curiosity, creativity, and a drive to learn and grow.  
 
-## 🌟 About Me  
-- **Professional Experience**:  
-  I work in the **cloud industry**, developing enterprise tools to enhance productivity and streamline workflows for defense organisations. As an **application developer** and a **native iOS developer**, I have gained valuable experience in designing, implementing, and refactoring features for robust, user-friendly applications across both platforms.  
+## 🌟 Professional Experience:  
+I work in the **cloud industry**, developing enterprise tools to enhance productivity and streamline workflows for defense organisations. As an **application developer** and a **native iOS developer**, I have gained valuable experience in designing, implementing, and refactoring features for robust, user-friendly applications across both platforms.  
 
 - **Core Strengths**:  
   - Cloud technologies (certified in AWS and GCP)  
