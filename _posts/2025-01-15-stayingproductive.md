@@ -16,7 +16,7 @@ _Tips to help you stay productive while learning new skills._
 
 This is one of the most effective strategies I’ve found. Whether it’s dedicating just 30 minutes in the morning to study or breaking tasks into smaller pieces, this approach makes the learning process much more manageable. It’s easy to get overwhelmed by the big picture, but focusing on smaller, achievable chunks keeps things from feeling daunting.
 
-<img src="/assets/img/250115_task_plan.png" alt="Set Small Goals" class="center-image-300">  
+<img src="/assets/img/250115_task_plan.png" alt="Set Small Goals" class="center-image image-300">  
 *Setting small goals helps make learning manageable.*
 
 ## Use the Pomodoro Technique
@@ -28,7 +28,7 @@ The Pomodoro technique is a favourite of mine. It involves 25-minute intervals o
 Incorporating rapid journaling into your routine is incredibly effective. Start each study session by making a quick to-do list of what you plan to cover for the day or week. This visual list of study tasks helps you stay organized and focused. Plus, there’s something deeply satisfying about ticking off completed items—it creates a sense of accomplishment that keeps you motivated.  
 After your session, take a moment to jot down key points or insights you’ve learned. This isn’t just about tracking progress; it reinforces what you’ve studied and makes it easier to revisit later. Over time, your journal becomes a personal roadmap of your learning journey and a valuable tool for exam revision.
 
-<img src="/assets/img/250115_rapid_journal.png" alt="Journaling" class="center-image-300">  
+<img src="/assets/img/250115_rapid_journal.png" alt="Journaling" class="center-image image-300">  
 *Journaling your progress reinforces learning and creates a personal roadmap.*
 
 ## Understand Your Learning Style
@@ -39,7 +39,7 @@ One often overlooked but powerful strategy is understanding your learning style.
 
 Sometimes, the simplest tools are the most effective. Try using a timer and good old paper and pen to stay focused and avoid distractions. Unlike a phone timer, a mechanical timer eliminates the temptation of notifications. Turning a timer dial and physically writing notes creates a sense of purpose and keeps you determined. It’s a refreshing change from the constant pings of digital devices and helps you stick to the study plan without getting sidetracked.
 
-<img src="/assets/img/250115_timer.png" alt="Low-Tech Tools" class="center-image-300">  
+<img src="/assets/img/250115_timer.png" alt="Low-Tech Tools" class="center-image image-300">  
 *Low-tech tools like a timer and paper help you stay focused and avoid distractions.*
 
 ## Consistency is Key

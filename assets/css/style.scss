@@ -3,9 +3,15 @@
 
 @import "{{ site.theme }}";
 
-.center-image-300 {
+.center-image {
   display: block;
   margin: 0 auto;
+}
+
+.image-300 {
   width: 300px;
 }
 
+.rounded-50 {
+  border-radius: 50%;
+}
