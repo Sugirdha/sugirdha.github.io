@@ -21,7 +21,7 @@ This is one of the most effective strategies I’ve found. Whether it’s dedica
 
 ## Use the Pomodoro Technique
 
-The Pomodoro technique is a favourite of mine. It involves 25-minute intervals of focused work, followed by a short reward break—like a cup of coffee, a quick walk, or even catching up on a few reels. Keeping the break short, under 5 minutes, prevents losing momentum, and knowing another break is just 25 minutes away helps you stay on track while enjoying small rewards. You could try using simple apps to implement this technique effectively. One of my favourites is Pomodor—it’s clean, distraction-free, and keeps you focused on your tasks without unnecessary frills.
+The Pomodoro technique is a favourite of mine. It involves 25-minute intervals of focused work, followed by a short reward break—like a cup of coffee, a quick walk, or even catching up on a few reels. Keeping the break short, under 5 minutes, prevents losing momentum, and knowing another break is just 25 minutes away helps you stay on track while enjoying small rewards. You could try using simple apps to implement this technique effectively. One of my favourites is [Pomodor](https://pomodor.app/timer) — it’s clean, distraction-free, and keeps you focused on your tasks without unnecessary frills.
 
 <!---
 <img src="/assets/img/250115_timer.png" alt="Pomodoro Timer" width="400" height="400">
