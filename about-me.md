@@ -24,6 +24,12 @@ I work in the **cloud industry**, developing enterprise tools to enhance product
 
 I’m a lifelong learner and a creative soul who loves to balance logic with artistry. When I’m not coding, you can find me:
 
+- Crafting creative solutions in the arts 🎨 and practising dance 💃.
+- Embracing adventure through high-speed roller coasters 🎢 and bungee jumping 🪂.
+- Reading novels 📚 to unwind and fuel my imagination.
+
+I’m a lifelong learner and a creative soul who loves to balance logic with artistry. When I’m not coding, you can find me:
+
 - Crafting creative solutions in the arts 🎨 and practising **dance** 💃.
 - Embracing adventure through high-speed roller coasters 🎢 and bungee jumping 🪂.
 - Reading novels 📚 to unwind and fuel my imagination.
