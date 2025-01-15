@@ -1,3 +1,8 @@
+---
+layout: post
+title:  "Welcome to Jekyll!"
+---
+
 # Staying Productive While Learning New Skills
 
 ![Stay_Productive](./assets/img/250115_stay_productive_4.png)  
