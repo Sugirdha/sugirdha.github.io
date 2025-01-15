@@ -3,7 +3,7 @@ layout: default
 title: Blog
 ---
 
-# Home
+# Latest Posts
 
 <ul style="list-style-type:none">
   {% for post in site.posts %}
