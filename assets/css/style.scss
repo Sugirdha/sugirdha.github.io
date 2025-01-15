@@ -1,4 +1,11 @@
 ---
 ---
 
-@import "jekyll-theme-minimal";
+@import "{{ site.theme }}";
+
+.center-square-image {
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: 0 auto;
+}
