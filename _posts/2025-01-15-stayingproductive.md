@@ -5,10 +5,10 @@ author: Sugirdha
 tags: productivity, continuous learning
 ---
 
+As someone who proudly identifies as a lifelong learning enthusiast, balancing full-time work with learning new skills can be a challenge. Over time, I’ve discovered a few simple strategies that help me stay productive and keep making progress, no matter how busy life gets.
+
 ![Stay_Productive](/assets/img/250115_stay_productive_4.png)  
 _Tips to help you stay productive while learning new skills._
-
-As someone who proudly identifies as a lifelong learning enthusiast, balancing full-time work with learning new skills can be a challenge. Over time, I’ve discovered a few simple strategies that help me stay productive and keep making progress, no matter how busy life gets.
 
 ## Set Small, Achievable Goals
 
