@@ -1,4 +1,7 @@
-
+---
+layout: post
+title: Staying Productive While Learning New Skills
+---
 
 # Staying Productive While Learning New Skills
 
