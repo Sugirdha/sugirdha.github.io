@@ -1,3 +1,9 @@
+---
+layout: default
+title: Home
+permalink: /about
+---
+
 👋 Hello, World!
 
 I’m an **application developer** with a passion for crafting user-centric applications and solving complex problems with clean, scalable, and reusable code. My journey in tech has been fueled by curiosity, creativity, and a drive to learn and grow.
@@ -39,4 +45,4 @@ I’m a lifelong learner and a creative soul who loves to balance logic with art
 - **LinkedIn**: [Sugirdha on LinkedIn](https://www.linkedin.com/in/sugirdha/)
 - **GitHub**: [Sugirdha on GitHub](https://github.com/Sugirdha)
 
-[back](./)
+<p><small><a href="/">Back to Home</a></small></p>
