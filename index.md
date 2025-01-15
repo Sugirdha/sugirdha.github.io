@@ -3,7 +3,7 @@ layout: default
 title: Blog
 ---
 
-# Latest Posts
+<h1 style="text-align: center; justify-content: center;">Latest Posts</h1>
 
 <ul style="list-style-type:none">
   {% for post in site.posts %}
