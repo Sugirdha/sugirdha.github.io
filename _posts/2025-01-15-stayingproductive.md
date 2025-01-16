@@ -2,7 +2,7 @@
 layout: post
 title: Staying Productive While Learning New Skills
 author: Sugirdha
-tags: productivity, continuous learning
+tags: productivity continuous-learning
 ---
 
 As someone who proudly identifies as a lifelong learning enthusiast, balancing full-time work with learning new skills can be a challenge. Over time, I’ve discovered a few simple strategies that help me stay productive and keep making progress, no matter how busy life gets.

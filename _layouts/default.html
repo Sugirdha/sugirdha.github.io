@@ -28,12 +28,18 @@
         {% endif %}
 
         {% if site.github.is_user_page %}
-        <ul style="list-style-type:none; display: inline-block; list-style-position: outside;">
-          <li><a href="{{ site.about }}">About</a></li>
-          <li><a href="{{ site.github.owner_url }}">GitHub Profile</a></li>
-          <li><a href="{{ site.linkedin_url }}">LinkedIn Profile</a></li>
+        <ul style="list-style-type:none">
+          <li><a href="{{ site.github.owner_url }}"><img src="https://i.sstatic.net/tskMh.png" alt="github"> Github</a></li>
+          <li><a href="{{ site.linkedin_url }}"><img src="https://i.sstatic.net/gVE0j.png" alt="linkedin"> LinkedIn</a></li>
         </ul>        
         {% endif %}
+
+        <h3>Pages</h3>
+        <ul>
+          <li><a href="{{ site.about }}">About</a></li>
+          <li><a href="{{ site.tags_page }}">Tags</a></li>
+        </ul>
+
 
         {% if site.show_downloads %}
         <ul class="downloads">
