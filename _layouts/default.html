@@ -10,6 +10,7 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
+
     {% include head-custom.html %}
   </head>
   <body>
@@ -27,12 +28,7 @@
         <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
         {% endif %}
 
-        {% if site.github.is_user_page %}
-        <ul style="list-style-type:none">
-          <li><a href="{{ site.github.owner_url }}">Github</a></li>
-          <li><a href="{{ site.linkedin_url }}">LinkedIn</a></li>
-        </ul>        
-        {% endif %}
+        <p style="text-align: center; justify-content: center;"><a href="{{ site.github_url }}"><i class="fa fa-github fa-2x" style="padding-right: 20px;"></i></a><a href="{{ site.linkedin_url }}" class="fa fa-linkedin fa-2x"></a></p>
 
         <h3>Pages</h3>
         <ul>
