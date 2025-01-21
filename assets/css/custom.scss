@@ -3,19 +3,28 @@
 
 // @import "{{ site.theme }}";
 
+// __center image for in-post graphics__
 .center-image {
   display: block;
   margin: 0 auto;
 }
-
+// __images with 300px width for in-post graphics__
 .image-300 {
   width: 300px;
 }
 
-.rounded-50 {
-  border-radius: 50%;
+
+/// beautiful-jekyll theme related changes
+// Make big headersite title smaller
+.intro-header .page-heading h1 {
+  font-size: 3.8rem;
 }
 
-.margin-20 {
-  margin-bottom: 20px;;
+// Make post titles smaller
+.post-preview .post-title {
+  font-size: 2rem;
+}
+
+.intro-header .page-heading .page-subheading {
+  font-size: 1.5rem;
 }
