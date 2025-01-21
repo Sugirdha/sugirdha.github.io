@@ -23,20 +23,13 @@ I work in the **cloud industry**, developing enterprise tools to enhance product
 
 - Mastering **cloud architecture** through hands-on projects and advanced certifications (GCP Professional Cloud Architect).
 - Exploring **machine learning** and its applications in everyday tech.
-- Expanding my skillset in **program management** to complement my technical expertise and enhance my ability to lead projects in the future.
+- Expanding my skillset in **product management** to complement my technical expertise and enhance my ability to lead projects in the future.
 - Learning **Japanese** 🇯🇵 as a personal challenge.
 
 ## 🎨 Beyond Tech
 
 I’m a lifelong learner and a creative soul who loves to balance logic with artistry. When I’m not coding, you can find me:
-
 - Crafting creative solutions in the arts 🎨 and practising dance 💃.
-- Embracing adventure through high-speed roller coasters 🎢 and bungee jumping 🪂.
-- Reading novels 📚 to unwind and fuel my imagination.
-
-I’m a lifelong learner and a creative soul who loves to balance logic with artistry. When I’m not coding, you can find me:
-
-- Crafting creative solutions in the arts 🎨 and practising **dance** 💃.
 - Embracing adventure through high-speed roller coasters 🎢 and bungee jumping 🪂.
 - Reading novels 📚 to unwind and fuel my imagination.
 
