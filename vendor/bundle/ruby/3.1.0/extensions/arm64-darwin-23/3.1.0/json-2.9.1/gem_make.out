@@ -1,0 +1,21 @@
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/json-2.9.1/ext/json/ext/parser
+/Users/sugirdha/.rbenv/versions/3.1.0/bin/ruby -I /Users/sugirdha/.rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20250120-52541-clhpu1.rb extconf.rb
+checking for rb_enc_interned_str() in ruby.h... yes
+checking for rb_hash_new_capa() in ruby.h... no
+checking for rb_hash_bulk_insert() in ruby.h... yes
+checking for rb_category_warn() in ruby.h... yes
+checking for strnlen() in string.h... yes
+checking for whether -std=c99 is accepted as CFLAGS... yes
+creating Makefile
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/json-2.9.1/ext/json/ext/parser
+make DESTDIR\= clean
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/json-2.9.1/ext/json/ext/parser
+make DESTDIR\=
+compiling parser.c
+linking shared-object json/ext/parser.bundle
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/json-2.9.1/ext/json/ext/parser
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 parser.bundle ./.gem.20250120-52541-8zwu41/json/ext

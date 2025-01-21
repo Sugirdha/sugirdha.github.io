@@ -1,8 +1,10 @@
 ---
 layout: post
 title: Where Creativity Meets Coding
+thumbnail-img: assets/img/250120_creativity_coding2.png
+share-img: assets/img/250120_creativity_coding_linkedin.png
 author: Sugirdha
-tags: creativity problem-solving pov
+tags: [creativity, problem-solving, pov]
 ---
 
 I've always been a visual person with a flair for coding, which is why I chose mobile app development as my first role. It allows me the satisfaction of watching people interact with what I've created. For me, this is more than just a technical job; it's an opportunity to express creativity. It often surprises people when they hear me say this. I usually get the same question: _How can creativity and coding go hand in hand?_

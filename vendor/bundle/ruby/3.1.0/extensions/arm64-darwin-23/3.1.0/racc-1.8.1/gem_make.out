@@ -1,0 +1,15 @@
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+/Users/sugirdha/.rbenv/versions/3.1.0/bin/ruby -I /Users/sugirdha/.rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20250120-52541-l12pz9.rb extconf.rb
+creating Makefile
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20250120-52541-5lpa4c/racc

@@ -2,7 +2,8 @@
 
 source "https://rubygems.org"
 
-gemspec
+# gemspec
 gem "jekyll-remote-theme"
-gem 'kramdown-parser-gfm'
-gem 'webrick'
+
+gem "jekyll-paginate"
+gem "jekyll-sitemap"
