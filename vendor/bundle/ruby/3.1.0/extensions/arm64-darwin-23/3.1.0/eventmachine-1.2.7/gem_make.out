@@ -1,0 +1,16 @@
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/Users/sugirdha/.rbenv/versions/3.1.0/bin/ruby -I /Users/sugirdha/.rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20250120-52541-4p2bfu.rb extconf.rb
+creating Makefile
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= clean
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\=
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/sugirdha/Documents/Development/Others/sugirdha.github.io/vendor/bundle/ruby/3.1.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20250120-52541-4gf66x
