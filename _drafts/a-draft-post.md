@@ -11,6 +11,7 @@ tags:
 # published: false
 # permalink:
 # date:
+# excerpt: ""
 ---
 
 Duplicate this file to create a post easily.
