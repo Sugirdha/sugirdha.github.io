@@ -160,8 +160,10 @@ To maintain consistency and flexibility, the navigation bar will be included in 
       }
     ```
     {% endraw %}
+
+    These changes in the theme repository should display a Nav Bar based on the settings from the content repository.
     
-3. Back in the content repository, update the `_config.yml` file to include the following settings that enables the navigation bar and define its links.  
+3. Back in the content repository, update the `_config.yml` file to include the following settings that enables the navigation bar and define its links:
   ```yaml
   # Custom theme settings
   show_navbar: true
@@ -216,6 +218,6 @@ This post is part 3 of the series: A Step-by-Step Guide Building Your Personal W
 
 Part 1: [Launch Your Personal Website with Jekyll and GitHub Pages](/2025/01/24/github-jekyll-part-1.html)  
 Part 2: [Personalise Your Jekyll Website with Themes and Layouts](/2025/01/25/github-jekyll-part-2.html)  
-Part 3: [Manage Content and Theme Updates Separately Using Git Remotes](#)  
+Part 3: [Manage Content and Theme Updates Separately Using Git Remotes](#)(This Post)  
 
 
