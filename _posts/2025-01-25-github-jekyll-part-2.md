@@ -90,8 +90,8 @@ cd /slate
 git remote add origin https://github.com/curios-it/slate.git 
 git remote add upstream https://github.com/pages-themes/slate.git  
 ```
-- The origin remote points to your fork, where you'll push your changes.  
-- The upstream remote points to the original theme repository, allowing you to pull updates from the original source.  
+   - The origin remote points to your fork, where you'll push your changes.  
+   - The upstream remote points to the original theme repository, allowing you to pull updates from the original source.  
 
 By separating your content and theme repositories, you ensure your setup is flexible, scalable, and aligned with best practices.  
 
@@ -175,6 +175,6 @@ What’s Next?
 In Part 3, we’ll focus on simplifying theme updates using Git remotes to make your setup even more flexible.
 
 Part 1: [Launch Your Personal Website with Jekyll and GitHub Pages](/2025/01/24/github-jekyll-part-1.html)  
-Part 2: [Personalise Your Jekyll Website with Themes and Layouts](#)  
+Part 2: [Personalise Your Jekyll Website with Themes and Layouts](#)(This Post)   
 Part 3: [Manage Content and Theme Updates Separately Using Git Remotes](/2025/01/26/github-jekyll-part-3.html)  
 

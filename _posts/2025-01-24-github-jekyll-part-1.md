@@ -26,13 +26,14 @@ Login to GitHub and create a new repository. The repository name should follow t
 
 _Note: I shall use this example throughout the tutorial. Remember to replace `curios-it` with your own GitHub username._  
 
-### 2. Install Jekyll
+##### Setting Up the Project Directory
 You can create your project locally anywhere in your machine. But to keep things consistent in this demo, create a new directory which will be called your project directory. We will call it `/path/to/project-directory/`.  
 
 Ensure you are in the correct folder before you get started:
 ```bash
 cd /path/to/project-directory/
 ```
+### 2. Install Jekyll
 
 Jekyll is a static site generator that transforms plain text into a complete website. It’s simple to use, highly customisable, and works seamlessly with GitHub Pages for hosting your website for free. Written in beginner-friendly formats like Markdown, it's perfect for personal portfolios.
 
@@ -80,13 +81,13 @@ Now, let's take a look at the folder structure.
 - `index.md`: The homepage content of your website.  
 - `assets/`: A folder for images, styles, scripts, and other static files.  
 - `_posts/`: Contains blog posts. We'll cover this in detail in the next article.   
+- `_drafts/`: (Optional) Unpublished posts. Drafts can be previewed locally but won't appear on the live website.   
 - `_site/`: The folder where Jekyll builds your static site. It gets regenerated every time the website is built.  
 - `Gemfile`: A file used to manage the Ruby gems (plugins and dependencies) required by your Jekyll site.
 
 Some folders are not actively used in our current setup but are part of the theme's repository. They play a key role in advanced customisation:  
 - `_layouts/`: Defines the structure of your website's pages. Layouts use placeholders for dynamic content insertion.  
 - `_includes/`: Stores reusable HTML snippets (e.g., headers, footers) to be included in layouts or pages.  
-- `_drafts/`: Unpublished posts. Drafts can be previewed locally but won't appear on the live website.   
 
 ### 7. Customise Layouts and Pages
 Let’s take a closer look at `index.md`, which is the home page content for the website. 
