@@ -188,6 +188,6 @@ _Note: It takes a couple of minutes for the changes to be live. If it takes long
 
 This post is part 1 of the series: A Step-by-Step Guide Building Your Personal Website with Jekyll and GitHub Pages. Check out the other parts to complete your journey!
 
-Part 1: [Launch Your Personal Website with Jekyll and GitHub Pages](#)  
+Part 1: [Launch Your Personal Website with Jekyll and GitHub Pages](#) (This Post)  
 Part 2: [Personalise Your Jekyll Website with Themes and Layouts](/2025/01/25/github-jekyll-part-2.html)  
 Part 3: [Manage Content and Theme Updates Separately Using Git Remotes](/2025/01/26/github-jekyll-part-3.html)  
