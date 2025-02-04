@@ -5,7 +5,7 @@ subtitle: "A Hands-on Introduction to Git"
 thumbnail-img: /assets/img/graphics/feb-2025/250203-git-post/git-post-1.png
 share-img: /assets/img/graphics/feb-2025/250203-git-post/git-post-1.png
 author: Sugirdha
-# excerpt: ""
+excerpt: "Get started with Git! In this hands-on guide, you'll learn how to set up Git, track changes, create branches, merge updates, and connect your project to a remote repository like GitHub. Master the basics and lay the foundation for seamless collaboration."
 tags: step-by-step tutorial git back-to-basics
 ---
 
