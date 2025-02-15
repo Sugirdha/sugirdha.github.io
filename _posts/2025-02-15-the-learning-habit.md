@@ -2,8 +2,8 @@
 layout: post
 title: "The Learning Habit: Thriving in a Changing World"
 subtitle: Embrace Transformation through Adaptability and Curiosity
-thumbnail-img: /assets/img/thumb.png
-share-img: /assets/img/path.jpg
+thumbnail-img: /assets/img/250215-The-Learning-Habit-thumbnail.png
+share-img: /assets/img/250215-The-Learning-Habit-share.png
 author: Sugirdha
 tags: continuous-learning
 excerpt: "Change is the only constant, whether it's by choice, such as pursuing new skills, stepping into leadership, or moving into a new specialisation, or driven by industry demands or personal circumstances. Today, the key to staying ahead is continuous learning."
