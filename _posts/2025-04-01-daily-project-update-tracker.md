@@ -5,7 +5,7 @@ subtitle: How one end-of-day logging habit and a Notion Button improved my daily
 thumbnail-img: assets/img/graphics/20250101-update-tracker/20250401-daily-update-tracker-2.png
 share-img: assets/img/graphics/20250101-update-tracker/20250401-daily-update-tracker-2.png
 author: Sugirdha
-tags: project-updates, daily-standup, self-reviews, scrum-meetings
+tags: project-updates daily-standup self-reviews scrum-meetings
 excerpt: "A simple Notion template and a five-minute end-of-day habit—this is how I keep my standups sharp and my reviews effortless. No more Monday morning guesswork or lost accomplishments. Here's the daily project update tracker I actually use (and stick to)."
 ---
 
