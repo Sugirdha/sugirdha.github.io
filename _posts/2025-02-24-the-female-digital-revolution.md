@@ -5,8 +5,7 @@ subtitle: "Why women in tech should take charge of their growth"
 thumbnail-img: /assets/img/250225_Women_in_Tech_thumbnail.png
 share-img: /assets/img/250225_Women_in_Tech_thumbnail.png
 author: Sugirdha
-# excerpt: ""
-tags: book-review, women-in-tech, continuous-learning
+tags: book-review women-in-tech continuous-learning
 ---
 
 
