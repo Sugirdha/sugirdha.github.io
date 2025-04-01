@@ -1,6 +1,7 @@
 remote_theme: Sugirdha/beautiful-jekyll
 plugins:
   - jekyll-remote-theme
+  - jekyll-paginate
 
 title: Sugirdha's Blog
 author: Sugirdha
@@ -9,6 +10,9 @@ description: App Developer and Lifelong Learning Enthusiast
 favicon_img: "/assets/img/favicon.jpg"
 
 excerpt_separator: <!--more-->
+
+paginate: 8
+paginate_path: "/page:num/"
 
 # linkedin_url: "https://www.linkedin.com/in/Sugirdha/"
 # github_url: "https://github.com/Sugirdha"
