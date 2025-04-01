@@ -2,4 +2,4 @@
 
 Welcome to my GitHub portfolio! 
 
-[Read about me](./about-me.md)
+[Read about me](./about.md)
