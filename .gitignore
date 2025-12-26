@@ -1,9 +1,15 @@
 .DS_Store
 
+# Jekyll build output
 _site
+.jekyll-metadata
+.jekyll-cache/
 .sass-cache
-Gemfile.lock
 *.gem
-.jekyll-cache
+
+# Ruby / Bundler
+vendor/bundle/
+vendor/cache/
+.bundle/
 
 
