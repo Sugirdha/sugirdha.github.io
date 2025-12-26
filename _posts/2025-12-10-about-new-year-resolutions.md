@@ -8,14 +8,16 @@ excerpt: I don’t do New Year resolutions. I’ve learnt that habits stick bett
 tags: [new-goals, habit-tracking, problem-solving, pov]
 ---
 
+I don’t do New Year resolutions. I don’t wait for the start of a new year to get cracking with new habits.  
+
 ![Why New Year Resolutions don't work and what to do instead](/assets/img/20251210-why-I-skip-1.png){:.center-image}
 
-I don’t do New Year resolutions. I don’t wait for the start of a new year to get cracking with new habits. In the first week of January, you start something along with millions of others doing the same.  
+Resolutions stick best when they are made on an ordinary day. A day that looks and feels like any other.  
+
+In the first week of January, you start something along with millions of others doing the same.  
 Ever been to the gym in January?  
 
 When momentum slips, people start dropping off. You’re rarely the only one.
-
-Resolutions stick best when they are made on an ordinary day. A day that looks and feels like any other. 
 
 **How I lock in a habit in 21 days**  
 I follow the 21-day habit-forming cycle.
