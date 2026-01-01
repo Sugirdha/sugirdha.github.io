@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Why I Skip New Year Resolutions (And what I do instead)
-thumbnail-img: assets/img/20251210-why-I-skip-2.png
-share-img: assets/img/20251210-why-I-skip-2.png
+thumbnail-img: assets/img/251210-why-I-skip-2.png
+share-img: assets/img/251210-why-I-skip-2.png
 author: Sugirdha
 excerpt: I don’t do New Year resolutions. I’ve learnt that habits stick better when they start on ordinary days, not symbolic ones. I use a simple 21-day window to lock in a habit before the year ends. No big declarations. No pressure. Just showing up, daily.
 tags: [new-goals, habit-tracking, problem-solving, pov]
@@ -10,7 +10,7 @@ tags: [new-goals, habit-tracking, problem-solving, pov]
 
 I don’t do New Year resolutions. I don’t wait for the start of a new year to get cracking with new habits.  
 
-![Why New Year Resolutions don't work and what to do instead](/assets/img/20251210-why-I-skip-1.png){:.center-image}
+![Why New Year Resolutions don't work and what to do instead](/assets/img/251210-why-I-skip-1.png){:.center-image}
 
 Resolutions stick best when they are made on an ordinary day. A day that looks and feels like any other.  
 
@@ -44,6 +44,6 @@ The 21-day plan works anytime. But if the motivation is “New Year, New Me”, 
 
 January is crowded. December is more honest. This doable plan creates a sense of achievement for the year that’s ending and a healthier environment for the year ahead. And a habit that survives the holiday season is one you can stick to. It has already faced broken routines and distractions.
 
-![Just Show Up](/assets/img/20251210-just-show-up.png){:.center-image}
+![Just Show Up](/assets/img/251210-just-show-up.png){:.center-image}
 
 By January, the habit is no longer new. It’s seasoned.
