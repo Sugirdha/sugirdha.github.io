@@ -1,6 +1,6 @@
 ---
 layout: post
-title: An introspective look at why showing up matters
+title: An Introspective Look at Why Showing Up Matters
 thumbnail-img: assets/img/251231-year-in-review-volunteering.png
 share-img: assets/img/251231-year-in-review-volunteering.png
 author: Sugirdha
