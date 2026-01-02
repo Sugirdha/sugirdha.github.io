@@ -5,7 +5,7 @@ thumbnail-img: assets/img/251231-year-in-review-volunteering.png
 share-img: assets/img/251231-year-in-review-volunteering.png
 author: Sugirdha
 excerpt: I didn’t sign up as a volunteer out of a sense of purpose or a desire to give back. I simply joined a community hoping it would offer clarity and connection. It gave me exactly what I had set out to find. And more.
-tags: [volunteering, introspective, WomenDevsSG]
+tags: [volunteering, introspective, WomenDevsSG, reflection]
 ---
 
 *This piece was originally written as a reflection for the [WomenDevs community blog](https://womendevssg.netlify.app/blog/year-in-review-personal-reflection-volunteering/), after my first year of volunteering. I’m reposting it here to capture a moment of learning and to remind myself what showing up can quietly change.*
