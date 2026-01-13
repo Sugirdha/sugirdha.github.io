@@ -10,6 +10,7 @@ tags: [AI, reflection]
 ---
 
 ![When AI Starts to Feel Like Someone](/assets/img/260102-when-ai-becomes-someone.png){:.center-image}
+_Photo by [Lisa from Pexels](https://www.pexels.com/photo/girl-sitting-by-the-window-1750536/){:target="_blank"}_
 
 It came up casually; the way little important things often do..
 
