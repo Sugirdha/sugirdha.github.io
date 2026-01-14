@@ -1,12 +1,12 @@
 ---
 layout: post
-title: The very many ways I failed at journaling
+title: The very many ways I failed at journalling
 subtitle: And the one way that changed me
 thumbnail-img: assets/img/260112-many-ways-journal-2.png
 share-img: assets/img/260112-many-ways-journal-2.png
 author: Sugirdha
 excerpt: Diaries, Planners, Plain sheets of paper. Come digital era, there were modern tools, apps, scannable notebooks. I tried it all. But what worked for me is surprisingly obvious.
-tags: [Journaling]
+tags: [Journalling]
 ---
 
 ![](/assets/img/260112-many-ways-journal-1.png){:.center-image}
@@ -51,13 +51,13 @@ Things were tracked easily, efficiently; clear thoughts translated to action poi
 
 ### When I tried to improve what was already working
 
-After successfully sticking with pen and paper bullet journaling for a while, I realised I didn’t want to carry the heavy notebook around wherever I went. 
+After successfully sticking with pen and paper bullet journalling for a while, I realised I didn’t want to carry the heavy notebook around wherever I went. 
 
 I had identified a problem. As someone wired to solve problems, I tried to modify the method with various tools.
 
 I experimented with different systems. A smaller notebook to record ideas on the go.  Fancy to-do apps. Apple Notes with templates. OneNote. Erasable notebooks. Scannable notebooks. Even Apple Reminders, an app I totally rethought and repurposed.  
 
-Each time, I found myself spending far more time playing with the tool than actually journaling. 
+Each time, I found myself spending far more time playing with the tool than actually journalling. 
 The actual solution was suprising. I didn't need to have a leather bound notebook. All I needed was an 80 page notebook from the stationary section.  
 
 The same thing happened when I looked at the pretty BuJos shared on YouTube. So many colors. Templates. Perfect monthly, weekly, daily spreads. All of them typically taking a long time to setup. Most of the time, it felt like people were showcasing their own sketchbook-y idea of a Bullet Journal, but had forgotten the core idea of the original method. Simplicity. Sustainability. 
