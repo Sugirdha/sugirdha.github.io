@@ -6,7 +6,7 @@ plugins:
 title: Sugirdha's Blog
 author: Sugirdha
 logo: /assets/img/profile.jpg
-description: App Developer and Lifelong Learning Enthusiast
+description: Software Developer and Lifelong Learning Enthusiast
 favicon_img: "/assets/img/favicon.jpg"
 
 excerpt_separator: <!--more-->
@@ -77,6 +77,16 @@ site-css:
   - "/assets/css/custom.css"
 #site-js:
 #  - "/assets/js/custom-script.js"
+#################################################################################
+#################################################################################
+
+#################################
+# --- Web Analytics Section --- #
+#################################
+
+# Fill in your Google Analytics tag ID (or "Measurement ID") to track your website usage
+gtag: "G-5FBC8VPRPT"
+
 #################################################################################
 #################################################################################
 
