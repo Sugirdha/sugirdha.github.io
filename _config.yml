@@ -2,6 +2,7 @@ remote_theme: Sugirdha/beautiful-jekyll
 plugins:
   - jekyll-remote-theme
   - jekyll-paginate
+  - jekyll-feed
 
 title: Sugirdha's Blog
 author: Sugirdha

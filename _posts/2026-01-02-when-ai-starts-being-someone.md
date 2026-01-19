@@ -5,6 +5,7 @@ subtitle: On awareness, comfort, and emotional boundaries
 thumbnail-img: assets/img/260102-ai-companionship.png
 share-img: assets/img/260102-ai-companionship.png
 author: Sugirdha
+featured: true
 excerpt: It came up in more than one conversation with people I know personally, in the past month alone. Different contexts. Different settings. Different stages of life. Yet a similar pattern. Turning to AI, not just for research or productivity, but for reassurance, validation, or simple to be heard.
 tags: [AI, reflection]
 ---

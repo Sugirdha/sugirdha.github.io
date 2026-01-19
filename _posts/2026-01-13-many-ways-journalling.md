@@ -5,6 +5,7 @@ subtitle: And the one way that changed me
 thumbnail-img: assets/img/260112-many-ways-journal-2.png
 share-img: assets/img/260112-many-ways-journal-2.png
 author: Sugirdha
+featured: true
 excerpt: Diaries, Planners, Plain sheets of paper. Come digital era, there were modern tools, apps, scannable notebooks. I tried it all. But what worked for me is surprisingly obvious.
 tags: [Journalling]
 ---

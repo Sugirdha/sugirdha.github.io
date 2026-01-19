@@ -4,6 +4,7 @@ title: An Introspective Look at Why Showing Up Matters
 thumbnail-img: assets/img/251231-year-in-review-volunteering.png
 share-img: assets/img/251231-year-in-review-volunteering.png
 author: Sugirdha
+featured: true
 excerpt: I didn’t sign up as a volunteer out of a sense of purpose or a desire to give back. I simply joined a community hoping it would offer clarity and connection. It gave me exactly what I had set out to find. And more.
 tags: [volunteering, introspective, WomenDevsSG, reflection]
 ---

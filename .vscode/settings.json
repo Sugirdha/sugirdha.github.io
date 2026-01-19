@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.json.liquid": "liquid",
+    "*.xml.liquid": "liquid"
+  }
+}

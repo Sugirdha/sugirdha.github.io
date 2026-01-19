@@ -4,6 +4,7 @@ title: Why I Skip New Year Resolutions (And what I do instead)
 thumbnail-img: assets/img/251210-why-I-skip-2.png
 share-img: assets/img/251210-why-I-skip-2.png
 author: Sugirdha
+featured: true
 excerpt: I don’t do New Year resolutions. I’ve learnt that habits stick better when they start on ordinary days, not symbolic ones. I use a simple 21-day window to lock in a habit before the year ends. No big declarations. No pressure. Just showing up, daily.
 tags: [new-goals, habit-tracking, problem-solving, pov]
 ---

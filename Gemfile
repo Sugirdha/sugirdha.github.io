@@ -7,5 +7,6 @@ gem "jekyll-remote-theme"
 
 gem "jekyll-paginate"
 gem "jekyll-sitemap"
+gem "jekyll-feed"
 
 gem "openssl", "~> 3.2.2"
