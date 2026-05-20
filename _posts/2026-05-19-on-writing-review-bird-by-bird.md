@@ -39,9 +39,9 @@ The book is also full of advice for people who are waiting for the perfect idea 
 
 That’s comforting!
 
-I might venture to say that writing is easier for people with busy minds, even chaotic ones. Not because the thoughts are already organised, but because there is always something moving inside. Something to observe. Something to untangle. Something to place on the page. 
+I might venture to say that writing is easier for people with busy minds, even chaotic ones. Not because the thoughts are already organised, but because there is always something moving inside. Something to unload. Something to decode. Something to place on paper. 
 
-Writing to create headspace can be a valid starting point. Stories show up when we begin.
+So writing to create headspace can be a valid starting point. Stories may show up when we begin.
 
 Lamott also talks about messy first drafts and writing as if driving at night, seeing only a small part of the road at a time. That image stuck with me. We do not need to see the whole journey before we begin. 
 
