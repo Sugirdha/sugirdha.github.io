@@ -4,38 +4,29 @@ title: About
 permalink: /about
 ---
 
-👋 Hello, World!
+## About Code, Create and Beyond
+> **Knock, knock, Neo…**  
+> **Follow the white rabbit.**
 
-I’m an **application developer** with a passion for crafting user-centric applications and solving complex problems with clean, scalable, and reusable code. My journey in tech has been fueled by curiosity, creativity, and a drive to learn and grow.
+I have been intrigued by this phrase ever since I watched *The Matrix*, long before I understood its connection to *Alice’s Adventures in Wonderland* or what it might mean to follow something into the unknown.
 
-## 🌟 Professional Experience:
+I started this blog thinking it would be a tech blog.
 
-I work in the **cloud industry**, developing enterprise tools to enhance productivity and streamline workflows for defense organisations. As an **application developer** and a **native iOS developer**, I have gained valuable experience in designing, implementing, and refactoring features for robust, user-friendly applications across both platforms.
+The early posts were about Git, GitHub Pages, and the things I was learning as a developer. Over time, the blog became something broader: a place to document not just what I build, but what I notice, question, and learn along the way.
 
-- **Core Strengths**:
-  - Cloud technologies (certified in AWS and GCP)
-  - Mobile development (Swift, Kotlin)
-  - Web development (Python, Javascript, ReactJS)
-  - Problem-solving and innovative solutions
-  - Clean architecture and modular design
+Code is still part of the story. But these days, I’m just as interested in the thinking around it: engineering discipline, AI-assisted ways of working, community, creativity, learning, and how people adapt when technology changes around them.
 
-## 🌱 What I’m Working On
+To me, “follow the white rabbit” has come to represent the pull of an interesting question: the moment something catches my attention and invites me into unfamiliar territory.
 
-- Mastering **cloud architecture** through hands-on projects and advanced certifications (GCP Professional Cloud Architect).
-- Exploring **machine learning** and its applications in everyday tech.
-- Expanding my skillset in **product management** to complement my technical expertise and enhance my ability to lead projects in the future.
-- Learning **Japanese** 🇯🇵 as a personal challenge.
+That is what this blog has become.
 
-## 🎨 Beyond Tech
+A record of following those questions through technology, creativity, community, and life.
 
-I’m a lifelong learner and a creative soul who loves to balance logic with artistry. When I’m not coding, you can find me:
-- Crafting creative solutions in the arts 🎨 and practising dance 💃.
-- Embracing adventure through high-speed roller coasters 🎢 and bungee jumping 🪂.
-- Reading novels 📚 to unwind and fuel my imagination.
+I’m a software developer by profession, and an explorer and creator by nature. This space is where those sides meet.
 
 ## 🔗 Let’s Connect
 
-- **LinkedIn**: [Sugirdha on LinkedIn](https://www.linkedin.com/in/sugirdha/)
-- **GitHub**: [Sugirdha on GitHub](https://github.com/Sugirdha)
+- [LinkedIn](https://www.linkedin.com/in/sugirdha/)
+- [GitHub](https://github.com/Sugirdha)
 
 <p><small><a href="/">Back to Home</a></small></p>
