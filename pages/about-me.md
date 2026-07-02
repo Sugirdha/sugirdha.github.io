@@ -6,9 +6,8 @@ permalink: /about
 
 ## About Code, Create and Beyond
 > **Knock, knock, Neo…**  
-> **Follow the white rabbit.**
-
-I have been intrigued by this phrase ever since I watched *The Matrix*, long before I understood its connection to *Alice’s Adventures in Wonderland* or what it might mean to follow something into the unknown.
+> **Follow the white rabbit.**  
+> I have been intrigued by this phrase ever since I watched *The Matrix*, long before I understood its connection to *Alice’s Adventures in Wonderland* or what it might mean to follow something into the unknown.
 
 I started this blog thinking it would be a tech blog.
 
