@@ -32,7 +32,7 @@ At this point, most of my life is in Notion already, in note form.
 
 So CurioBot became a lightweight layer around my Notion control centre. It helps manage the tasks, events, random thoughts, and attention items that were already fighting for a place in Notion, where they would not get lost. It helps me interact with that system through limited, low-resistance touchpoints: check-ins, nudges, and quick captures, all without making it noisy.
 
-When I first saw Victoria Lo’s OpenClaw series, I only wanted to try it as a challenge. At first, I thought I would follow along and build a small Telegram-based assistant. But quite quickly, I realised my use case was different. I did not need to build another bot. I was trying to build a way back to the system itself. 
+When I first saw [Victoria Lo’s OpenClaw series](https://lo-victoria.com/building-my-second-brain-on-openclaw-part-1){:target="_blank"}, I only wanted to try it as a challenge. At first, I thought I would follow along and build an amazing Telegram-based assistant. But quite quickly, I realised my use case was different. I did not need to build another bot. I was trying to build a way back to the system itself. 
 
 I’m no longer sure I can call CurioBot just a consistency buddy. It’s actually a way to preserve continuity in the system while allowing natural drifts.
 
