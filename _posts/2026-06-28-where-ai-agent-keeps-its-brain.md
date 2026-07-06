@@ -2,15 +2,15 @@
 layout: post
 title: Where Does an AI Agent Keep Its Brain?
 subtitle: An unexpected lesson from one of the most-read children’s books in the world
-thumbnail-img: assets/img/20250628-ai-agent-brain-2.png
-share-img: assets/img/20250628-ai-agent-brain-2.png
+thumbnail-img: assets/img/20260628-ai-agent-brain-2.png
+share-img: assets/img/20260628-ai-agent-brain-2.png
 author: Sugirdha
 featured: true
 excerpt: A personal reflection on building CurioBot, a small AI consistency buddy, and the unexpected lesson it taught me about agentic AI - trust is not just about intelligence. It is about knowing where the memory, permissions, prompts, and behaviour come from.
 tags: [AI, AI Agents, Agentic Workflows, Reflection]
 ---
 
-![](/assets/img/20250628-ai-agent-brain-1.png){:.center-image}
+![](/assets/img/20260628-ai-agent-brain-1.png){:.center-image}
 _Photo by [Ann H from Pexels](https://www.pexels.com/photo/close-up-shot-of-a-wooden-robot-toy-on-a-black-surface-4102557/){:target="_blank"}_
 
 
@@ -44,7 +44,7 @@ The real questions began when I wondered where its “brain” lived. What memor
 And when it behaves in a way I do not want, can I inspect it, correct it, and change the rule for next time?
 
 
-![](/assets/img/20250628-ai-agent-brain-3.GIF){:.center-image}
+![](/assets/img/20260628-ai-agent-brain-3.GIF){:.center-image}
 
 That was when Arthur Weasley’s warning suddenly felt less like a magical-world warning and more like an engineering principle.
 
