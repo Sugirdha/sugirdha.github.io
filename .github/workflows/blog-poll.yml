@@ -2,9 +2,11 @@ name: Blog Publish Poller
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   poll:
@@ -17,17 +19,28 @@ jobs:
           ref: main
           fetch-depth: 0
 
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install dependencies
+      - name: Install Node dependencies
         run: npm ci
 
-      - name: Find requested blog posts
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Publish requested blog posts
         env:
           NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
           BLOG_DATA_SOURCE_ID: ${{ vars.BLOG_DATA_SOURCE_ID }}
-        run: npm run blog:poll
+        run: npm run blog:poll -- --publish
