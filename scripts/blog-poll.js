@@ -1,10 +1,13 @@
 const { Client } = require("@notionhq/client");
+const { execFileSync } = require("child_process");
+const path = require("path");
 
 const notion = new Client({
   auth: process.env.NOTION_ACCESS_TOKEN,
 });
 
 const dataSourceId = process.env.BLOG_DATA_SOURCE_ID;
+const shouldPublish = process.argv.includes("--publish");
 
 function getTitle(page) {
   const titleProperty = Object.values(page.properties || {})
@@ -43,12 +46,44 @@ async function main() {
     return;
   }
 
-  console.log(`Found ${response.results.length} publish request(s):\n`);
+  console.log(`Found ${response.results.length} publish request(s).\n`);
 
   for (const page of response.results) {
-    console.log(`- ${getTitle(page)}`);
-    console.log(`  Page ID: ${page.id}`);
-    console.log(`  URL: ${page.url}`);
+    const title = getTitle(page);
+
+    console.log(`Processing: ${title}`);
+    console.log(`Page ID: ${page.id}`);
+
+    if (!shouldPublish) {
+      console.log("Dry run: would publish this post.\n");
+      continue;
+    }
+
+    execFileSync(
+      process.execPath,
+      [
+        path.join(__dirname, "blog-publish.js"),
+        page.url,
+        "--publish",
+      ],
+      {
+        cwd: process.cwd(),
+        stdio: "inherit",
+        env: process.env,
+      }
+    );
+
+    // Only clear the request after publishing succeeds.
+    await notion.pages.update({
+      page_id: page.id,
+      properties: {
+        "Publish request": {
+          checkbox: false,
+        },
+      },
+    });
+
+    console.log(`Cleared Publish request for: ${title}\n`);
   }
 }
 
