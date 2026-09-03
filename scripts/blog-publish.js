@@ -58,7 +58,15 @@ async function getAllChildren(blockId) {
   return results;
 }
 
-function blockToMarkdown(block) {
+async function blockToMarkdown(
+  block,
+  {
+    blogRepo,
+    publishDate,
+    slug,
+    imageIndex,
+  }
+) {
   const data = block[block.type];
 
   switch (block.type) {
@@ -88,6 +96,43 @@ function blockToMarkdown(block) {
 
     case "code":
       return `\`\`\`${data.language || ""}\n${richTextToMarkdown(data.rich_text)}\n\`\`\``;
+
+    case "image": {
+      const url = imageUrlFromBlock(block);
+
+      if (!url) {
+        return "<!-- Unable to read Notion image -->";
+      }
+
+      const ext = extensionFromUrl(url);
+
+      const assetName =
+        imageIndex === 0
+          ? `${publishDate.replaceAll("-", "")}-${slug}-header${ext}`
+          : `${publishDate.replaceAll("-", "")}-${slug}-image-${String(imageIndex).padStart(2, "0")}${ext}`;
+
+      const relativePath = `assets/img/${assetName}`;
+      const absolutePath = path.join(blogRepo, relativePath);
+
+      if (fs.existsSync(absolutePath)) {
+        throw new Error(`Image already exists: ${absolutePath}`);
+      }
+
+      await downloadImage(url, absolutePath);
+
+      const caption = richTextToMarkdown(
+        block.image.caption || []
+      );
+
+      let markdown =
+        `![](/${relativePath}){:.center-image}`;
+
+      if (caption) {
+        markdown += `\n\n*${caption}*`;
+      }
+
+      return markdown;
+    }
 
     default:
       return `<!-- Unsupported Notion block: ${block.type} -->`;
@@ -152,6 +197,83 @@ function getCheckboxProperty(page, name) {
   return property.checkbox;
 }
 
+function getFileProperty(page, name) {
+  const property = page.properties[name];
+
+  if (!property || property.type !== "files") {
+    return null;
+  }
+
+  const item = property.files?.[0];
+
+  if (!item) {
+    return null;
+  }
+
+  if (item.type === "file") {
+    return {
+      name: item.name,
+      url: item.file.url,
+    };
+  }
+
+  if (item.type === "external") {
+    return {
+      name: item.name,
+      url: item.external.url,
+    };
+  }
+
+  return null;
+}
+
+async function downloadImage(url, destination) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to download image: ${response.status} ${response.statusText}`
+    );
+  }
+
+  const buffer = Buffer.from(await response.arrayBuffer());
+
+  fs.mkdirSync(path.dirname(destination), {
+    recursive: true,
+  });
+
+  fs.writeFileSync(destination, buffer);
+}
+
+function imageUrlFromBlock(block) {
+  const image = block.image;
+
+  if (!image) return "";
+
+  if (image.type === "file") {
+    return image.file?.url || "";
+  }
+
+  if (image.type === "external") {
+    return image.external?.url || "";
+  }
+
+  return "";
+}
+
+function extensionFromUrl(url) {
+  try {
+    const pathname = new URL(url).pathname;
+    const ext = path.extname(pathname);
+
+    if (ext && ext.length <= 6) {
+      return ext.toLowerCase();
+    }
+  } catch {}
+
+  return ".png";
+}
+
 async function main() {
   const input = process.argv[2];
 
@@ -178,7 +300,7 @@ async function main() {
   const excerpt = getRichTextProperty(page, "Excerpt");
   const tags = getMultiSelectProperty(page, "Tags");
   const featured = getCheckboxProperty(page, "Featured");
-  const image = getRichTextProperty(page, "Image");
+  const thumbnail = getFileProperty(page, "Thumbnail");
 
   if (!publishDate) {
     throw new Error("Publish date is missing in Notion.");
@@ -201,6 +323,35 @@ async function main() {
 
   const slug = slugify(title);
   const filename = `${publishDate}-${slug}.md`;
+
+  let thumbnailPath = "";
+
+  if (thumbnail) {
+    const originalExt = path.extname(thumbnail.name) || ".png";
+
+    const thumbnailFilename =
+      `${publishDate.replaceAll("-", "")}-${slug}-thumbnail${originalExt}`;
+
+    thumbnailPath = `assets/img/${thumbnailFilename}`;
+
+    const absoluteThumbnailPath = path.join(
+      blogRepo,
+      thumbnailPath
+    );
+
+    if (fs.existsSync(absoluteThumbnailPath)) {
+      throw new Error(
+        `Thumbnail already exists: ${absoluteThumbnailPath}`
+      );
+    }
+
+    await downloadImage(
+      thumbnail.url,
+      absoluteThumbnailPath
+    );
+
+    console.log(`Downloaded thumbnail: ${thumbnailPath}`);
+  }
 
   const blocks = await getAllChildren(pageId);
 
@@ -228,8 +379,25 @@ async function main() {
     }
   }
 
-  const body = bodyBlocks
-    .map(blockToMarkdown)
+  const markdownBlocks = [];
+  let imageIndex = 0;
+
+  for (const block of bodyBlocks) {
+    markdownBlocks.push(
+      await blockToMarkdown(block, {
+        blogRepo,
+        publishDate,
+        slug,
+        imageIndex,
+      })
+    );
+
+    if (block.type === "image") {
+      imageIndex++;
+    }
+  }
+
+  const body = markdownBlocks
     .join("\n\n")
     .trim();
 
@@ -243,9 +411,9 @@ async function main() {
     lines.push(`subtitle: ${escapeYaml(subtitle)}`);
   }
 
-  if (image) {
-    lines.push(`thumbnail-img: ${image}`);
-    lines.push(`share-img: ${image}`);
+  if (thumbnailPath) {
+    lines.push(`thumbnail-img: ${thumbnailPath}`);
+    lines.push(`share-img: ${thumbnailPath}`);
   }
 
   lines.push("author: Sugirdha");
