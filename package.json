@@ -2,7 +2,8 @@
   "name": "sugirdha-blog",
   "private": true,
   "scripts": {
-    "blog:publish": "node scripts/blog-publish.js"
+    "blog:publish": "node scripts/blog-publish.js",
+    "blog:poll": "node scripts/blog-poll.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.0.0"
