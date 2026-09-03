@@ -109,6 +109,49 @@ function run(command, cwd) {
   }).trim();
 }
 
+function getRichTextProperty(page, name) {
+  const property = page.properties[name];
+
+  if (!property || property.type !== "rich_text") {
+    return "";
+  }
+
+  return property.rich_text
+    .map(item => item.plain_text)
+    .join("")
+    .trim();
+}
+
+function getDateProperty(page, name) {
+  const property = page.properties[name];
+
+  if (!property || property.type !== "date") {
+    return "";
+  }
+
+  return property.date?.start || "";
+}
+
+function getMultiSelectProperty(page, name) {
+  const property = page.properties[name];
+
+  if (!property || property.type !== "multi_select") {
+    return [];
+  }
+
+  return property.multi_select.map(item => item.name);
+}
+
+function getCheckboxProperty(page, name) {
+  const property = page.properties[name];
+
+  if (!property || property.type !== "checkbox") {
+    throw new Error(`Missing checkbox property: ${name}`);
+  }
+
+  return property.checkbox;
+}
+
 async function main() {
   const input = process.argv[2];
 
@@ -117,53 +160,6 @@ async function main() {
   const blogRepo = repoArg
     ? path.resolve(repoArg.replace("--repo=", "").trim())
     : process.cwd();
-    
-  const tagsArg = process.argv.find(arg => arg.startsWith("--tags="));
-
-  const tags = tagsArg
-    ? tagsArg
-        .replace("--tags=", "")
-        .split(",")
-        .map(tag => tag.trim())
-        .filter(Boolean)
-    : [];
-
-  const excerptArg = process.argv.find(arg => arg.startsWith("--excerpt="));
-
-  const excerpt = excerptArg
-    ? excerptArg.replace("--excerpt=", "").trim()
-    : "";
-
-  const imageArg = process.argv.find(arg => arg.startsWith("--image="));
-
-  const image = imageArg
-    ? imageArg.replace("--image=", "").trim()
-    : "";
-
-  const dateArg = process.argv.find(arg => arg.startsWith("--date="));
-
-  const publishDate = dateArg
-    ? dateArg.replace("--date=", "").trim()
-    : new Date().toISOString().slice(0, 10);
-
-  const featuredArg = process.argv.find(arg =>
-    arg.startsWith("--featured=")
-  );
-
-  if (!featuredArg) {
-    throw new Error("Missing --featured=true|false");
-  }
-
-  const featuredValue = featuredArg
-    .replace("--featured=", "")
-    .trim()
-    .toLowerCase();
-
-  if (!["true", "false"].includes(featuredValue)) {
-    throw new Error("--featured must be true or false");
-  }
-
-  const featured = featuredValue === "true";
   
   const shouldPublish = process.argv.includes("--publish");
 
@@ -177,6 +173,24 @@ async function main() {
   const page = await notion.pages.retrieve({
     page_id: pageId,
   });
+
+  const publishDate = getDateProperty(page, "Publish date");
+  const excerpt = getRichTextProperty(page, "Excerpt");
+  const tags = getMultiSelectProperty(page, "Tags");
+  const featured = getCheckboxProperty(page, "Featured");
+  const image = getRichTextProperty(page, "Image");
+
+  if (!publishDate) {
+    throw new Error("Publish date is missing in Notion.");
+  }
+
+  if (!excerpt) {
+    throw new Error("Excerpt is missing in Notion.");
+  }
+
+  if (!tags.length) {
+    throw new Error("At least one tag is required in Notion.");
+  }
 
   const titleProperty = Object.values(page.properties)
     .find(property => property.type === "title");

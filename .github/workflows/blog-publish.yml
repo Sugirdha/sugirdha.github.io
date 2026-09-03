@@ -8,32 +8,6 @@ on:
         required: true
         type: string
 
-      date:
-        description: "Publish date (YYYY-MM-DD)"
-        required: true
-        type: string
-
-      featured:
-        description: "Featured post?"
-        required: true
-        default: false
-        type: boolean
-
-      excerpt:
-        description: "Post excerpt"
-        required: true
-        type: string
-
-      tags:
-        description: "Comma-separated tags"
-        required: true
-        type: string
-
-      image:
-        description: "Image path, e.g. assets/img/example.png"
-        required: false
-        type: string
-
       publish:
         description: "Actually publish to the live blog?"
         required: true
@@ -86,17 +60,7 @@ jobs:
           IMAGE: ${{ inputs.image }}
           PUBLISH: ${{ inputs.publish }}
         run: |
-          args=(
-            "$NOTION_URL"
-            "--date=$POST_DATE"
-            "--featured=$FEATURED"
-            "--excerpt=$EXCERPT"
-            "--tags=$TAGS"
-          )
-
-          if [ -n "$IMAGE" ]; then
-            args+=("--image=$IMAGE")
-          fi
+          args=("$NOTION_URL")
 
           if [ "$PUBLISH" = "true" ]; then
             args+=("--publish")
