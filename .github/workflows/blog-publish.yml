@@ -34,8 +34,14 @@ on:
         required: false
         type: string
 
+      publish:
+        description: "Actually publish to the live blog?"
+        required: true
+        default: false
+        type: boolean
+
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   dry-run:
@@ -44,6 +50,15 @@ jobs:
     steps:
       - name: Check out blog
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure Git
+        if: ${{ inputs.publish }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -69,6 +84,7 @@ jobs:
           EXCERPT: ${{ inputs.excerpt }}
           TAGS: ${{ inputs.tags }}
           IMAGE: ${{ inputs.image }}
+          PUBLISH: ${{ inputs.publish }}
         run: |
           args=(
             "$NOTION_URL"
@@ -80,6 +96,10 @@ jobs:
 
           if [ -n "$IMAGE" ]; then
             args+=("--image=$IMAGE")
+          fi
+
+          if [ "$PUBLISH" = "true" ]; then
+            args+=("--publish")
           fi
 
           npm run blog:publish -- "${args[@]}"
