@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { execSync } = require("child_process");
+const { execSync, execFileSync } = require("child_process");
 const { Client } = require("@notionhq/client");
 
 const notion = new Client({
@@ -65,6 +65,7 @@ async function blockToMarkdown(
     publishDate,
     slug,
     imageIndex,
+    generatedFiles,
   }
 ) {
   const data = block[block.type];
@@ -119,6 +120,8 @@ async function blockToMarkdown(
       }
 
       await downloadImage(url, absolutePath);
+
+      generatedFiles.push(absolutePath);
 
       const caption = richTextToMarkdown(
         block.image.caption || []
@@ -290,6 +293,38 @@ async function main() {
     process.exit(1);
   }
 
+  const postsDir = path.join(blogRepo, "_posts");
+
+  if (!fs.existsSync(postsDir)) {
+    throw new Error(`Could not find Jekyll _posts directory: ${postsDir}`);
+  }
+
+  if (shouldPublish) {
+    const existingChanges = run("git status --porcelain", blogRepo);
+
+    if (existingChanges) {
+      throw new Error(
+        `Blog repo has existing changes. Commit or remove them before publishing:\n${existingChanges}`
+      );
+    }
+
+    const branch = run("git branch --show-current", blogRepo);
+
+    if (branch !== "main") {
+      throw new Error(
+        `Publishing is only allowed from main. Current branch: ${branch}`
+      );
+    }
+    
+    console.log("Syncing with origin/main...");
+
+    execSync("git pull --ff-only origin main", {
+      cwd: blogRepo,
+      stdio: "inherit",
+    });
+  }
+    
+  const generatedFiles = [];
   const pageId = pageIdFromUrl(input);
 
   const page = await notion.pages.retrieve({
@@ -324,6 +359,13 @@ async function main() {
   const slug = slugify(title);
   const filename = `${publishDate}-${slug}.md`;
 
+  const outputPath = path.join(postsDir, filename);
+
+  // Never silently replace an existing published post.
+  if (fs.existsSync(outputPath)) {
+    throw new Error(`Post already exists: ${outputPath}`);
+  }
+
   let thumbnailPath = "";
 
   if (thumbnail) {
@@ -349,6 +391,8 @@ async function main() {
       thumbnail.url,
       absoluteThumbnailPath
     );
+
+    generatedFiles.push(absoluteThumbnailPath);
 
     console.log(`Downloaded thumbnail: ${thumbnailPath}`);
   }
@@ -389,6 +433,7 @@ async function main() {
         publishDate,
         slug,
         imageIndex,
+        generatedFiles,
       })
     );
 
@@ -435,45 +480,8 @@ async function main() {
 
   const postContent = lines.join("\n");
 
-  const postsDir = path.join(blogRepo, "_posts");
-
-  if (!fs.existsSync(postsDir)) {
-    throw new Error(`Could not find Jekyll _posts directory: ${postsDir}`);
-  }
-
-  if (shouldPublish) {
-    const existingChanges = run("git status --porcelain", blogRepo);
-
-    if (existingChanges) {
-      throw new Error(
-        `Blog repo has existing changes. Commit or remove them before publishing:\n${existingChanges}`
-      );
-    }
-
-    const branch = run("git branch --show-current", blogRepo);
-
-    if (branch !== "main") {
-      throw new Error(
-        `Publishing is only allowed from main. Current branch: ${branch}`
-      );
-    }
-    
-    console.log("Syncing with origin/main...");
-
-    execSync("git pull --ff-only origin main", {
-      cwd: blogRepo,
-      stdio: "inherit",
-    });
-  }
-
-  const outputPath = path.join(postsDir, filename);
-
-  // Never silently replace an existing published post.
-  if (fs.existsSync(outputPath)) {
-    throw new Error(`Post already exists: ${outputPath}`);
-  }
-
   fs.writeFileSync(outputPath, postContent, "utf8");
+  generatedFiles.push(outputPath);
 
   console.log(`Created: ${outputPath}`);
 
@@ -491,18 +499,32 @@ async function main() {
 
   console.log("\nJekyll build passed.");
 
-  const relativePostPath = path.relative(blogRepo, outputPath);
+  const relativeGeneratedFiles = generatedFiles.map(file =>
+    path.relative(blogRepo, file)
+  );
 
-  execSync(`git add -- "${relativePostPath}"`, {
-    cwd: blogRepo,
-    stdio: "inherit",
-  });
+  execFileSync(
+    "git",
+    ["add", "--", ...relativeGeneratedFiles],
+    {
+      cwd: blogRepo,
+      stdio: "inherit",
+    }
+  );
 
-  const stagedFiles = run("git diff --cached --name-only", blogRepo);
+  const stagedFiles = run(
+    "git diff --cached --name-only",
+    blogRepo
+  )
+    .split("\n")
+    .filter(Boolean)
+    .sort();
 
-  if (stagedFiles !== relativePostPath) {
+  const expectedFiles = [...relativeGeneratedFiles].sort();
+
+  if (JSON.stringify(stagedFiles) !== JSON.stringify(expectedFiles)) {
     throw new Error(
-      `Unexpected staged files detected:\n${stagedFiles}`
+      `Unexpected staged files detected:\n${stagedFiles.join("\n")}`
     );
   }
 
