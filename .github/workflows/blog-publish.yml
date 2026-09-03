@@ -1,0 +1,102 @@
+name: Blog Publisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      notion_url:
+        description: "Notion article URL"
+        required: true
+        type: string
+
+      date:
+        description: "Publish date (YYYY-MM-DD)"
+        required: true
+        type: string
+
+      featured:
+        description: "Featured post?"
+        required: true
+        default: false
+        type: boolean
+
+      excerpt:
+        description: "Post excerpt"
+        required: true
+        type: string
+
+      tags:
+        description: "Comma-separated tags"
+        required: true
+        type: string
+
+      image:
+        description: "Image path, e.g. assets/img/example.png"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out blog
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Generate post from Notion
+        env:
+          NOTION_ACCESS_TOKEN: ${{ secrets.NOTION_ACCESS_TOKEN }}
+          NOTION_URL: ${{ inputs.notion_url }}
+          POST_DATE: ${{ inputs.date }}
+          FEATURED: ${{ inputs.featured }}
+          EXCERPT: ${{ inputs.excerpt }}
+          TAGS: ${{ inputs.tags }}
+          IMAGE: ${{ inputs.image }}
+        run: |
+          args=(
+            "$NOTION_URL"
+            "--date=$POST_DATE"
+            "--featured=$FEATURED"
+            "--excerpt=$EXCERPT"
+            "--tags=$TAGS"
+          )
+
+          if [ -n "$IMAGE" ]; then
+            args+=("--image=$IMAGE")
+          fi
+
+          npm run blog:publish -- "${args[@]}"
+
+      - name: Validate Jekyll build
+        run: bundle exec jekyll build
+
+      - name: Show generated post
+        run: |
+          echo "Generated post:"
+          git status --short
+          echo
+          find _posts -type f -newer package.json -print
+
+      - name: Upload generated post
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-blog-post
+          path: _posts/
+          retention-days: 1

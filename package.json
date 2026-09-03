@@ -1,0 +1,10 @@
+{
+  "name": "sugirdha-blog",
+  "private": true,
+  "scripts": {
+    "blog:publish": "node scripts/blog-publish.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^5.0.0"
+  }
+}

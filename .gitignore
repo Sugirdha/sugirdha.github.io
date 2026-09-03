@@ -13,3 +13,4 @@ vendor/cache/
 .bundle/
 
 
+node_modules/
