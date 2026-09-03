@@ -289,7 +289,7 @@ async function main() {
   const shouldPublish = process.argv.includes("--publish");
 
   if (!input) {
-    console.error("Usage: node build-post.js <notion-page-url>");
+    console.error("Usage: node blog-publish.js <notion-page-url>");
     process.exit(1);
   }
 
