@@ -36,7 +36,7 @@ Check-ins work similarly. Curio queries the system to bring up priorities and no
 
 Other systems use the same backbone in different ways:
 
-- **Tasks **link directly to actions. Some of them point me to the documents or drafts in progress; others bring me straight to the respective ChatGPT project or conversation. Those links can also be included in the reminders to allow me an easy entrypoint back to work.
+- **Tasks** link directly to actions. Some of them point me to the documents or drafts in progress; others bring me straight to the respective ChatGPT project or conversation. Those links can also be included in the reminders to allow me an easy entrypoint back to work.
 
 - **Content Scout** can use the interests, ideas and existing content stored in Notion as context for what it should look for, rather than discovering things in isolation.
 
@@ -52,9 +52,9 @@ So the important part of my Control Centre is not the page for looking at data. 
 
 Once Notion became the Control Centre, I needed one rule more than anything else: the system could not become another thing I had to manage. So I kept the architecture fairly simple.
 
-**Notion as the source of truth. **Other tools can display, trigger or act on the data, but state is captured and maintained in the database as much as possible. Google Calendar is just a reflection of what is in here. Telegram check-ins still update the status here. A blog post is drafted and finalised here, with the publish workflow trigger just a button away before GitHub Actions takes care of the rest. External tools do their part, but the underlying record stays in one place.
+**Notion as the source of truth.** Other tools can display, trigger or act on the data, but state is captured and maintained in the database as much as possible. Google Calendar is just a reflection of what is in here. Telegram check-ins still update the status here. A blog post is drafted and finalised here, with the publish workflow trigger just a button away before GitHub Actions takes care of the rest. External tools do their part, but the underlying record stays in one place.
 
-**External tools as entry points or outputs, not secondary sources. **Telegram is useful because it is quick to access. Calendar app is useful because I’m used to the event reminders and the interface. My Github Pages-Jekyll website still belongs in its home. ChatGPT is where much of the brainstorming happens. But none of them are competing for my attention.
+**External tools as entry points or outputs, not secondary sources.** Telegram is useful because it is quick to access. Calendar app is useful because I’m used to the event reminders and the interface. My Github Pages-Jekyll website still belongs in its home. ChatGPT is where much of the brainstorming happens. But none of them are competing for my attention.
 
 **CurioBot as the operating layer.** Notion holds state, but Curio acts on it. It can read across databases, surface what needs attention, update records, trigger the right workflow and carry context between otherwise separate parts of the system. A tri-weekly check-in delivered to Telegram, an event published to the calendar, or a scout identifying potential content material from the rest of my activities or thoughts may look like separate features, but Curio is the layer coordinating them around the same underlying data. 
 
