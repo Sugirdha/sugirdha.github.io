@@ -20,7 +20,7 @@ And then everyone started building their personal AI agents. I did too. One of t
 
 Notion was already where I went every day. Naturally. So instead of moving my life to Curio, I made Curio work around what I already had in Notion. 
 
-**Path of least resistance.**
+Path of least resistance. 
 
 That was when Notion stopped being just a place where I organised notes and started becoming my Control Centre.
 
