@@ -99,7 +99,9 @@ async function blockToMarkdown(
       return "---";
 
     case "code":
-      return `\`\`\`${data.language || ""}\n${richTextToMarkdown(data.rich_text)}\n\`\`\``;
+      return `\`\`\`${data.language || ""}\n${richTextToMarkdown(
+        data.rich_text
+      )}\n\`\`\``;
 
     case "image": {
       const url = imageUrlFromBlock(block);
@@ -114,7 +116,10 @@ async function blockToMarkdown(
       const assetName =
         imageIndex === 0
           ? `${datePrefix}-${assetSlug}-header${ext}`
-          : `${datePrefix}-${assetSlug}-image-${String(imageIndex).padStart(2, "0")}${ext}`;
+          : `${datePrefix}-${assetSlug}-image-${String(imageIndex).padStart(
+              2,
+              "0"
+            )}${ext}`;
 
       const relativePath = `assets/img/${assetName}`;
       const absolutePath = path.join(blogRepo, relativePath);
@@ -211,7 +216,6 @@ function getStatusProperty(page, name) {
     return property.status?.name || "";
   }
 
-  // Allow an older Select property without changing the workflow.
   if (property.type === "select") {
     return property.select?.name || "";
   }
@@ -318,7 +322,7 @@ async function writePublicationState(pageId, filename) {
     page_id: pageId,
     properties: {
       "Publication status": {
-        status: { name: "Published" },
+        select: { name: "Published" },
       },
       "Published file": {
         rich_text: richTextValue(filename),
@@ -351,14 +355,15 @@ async function main() {
 
   const shouldPublish = process.argv.includes("--publish");
   const shouldUpdate = process.argv.includes("--update");
+  const shouldPush = shouldPublish || shouldUpdate;
 
-  if (shouldUpdate && !shouldPublish) {
-    throw new Error("--update must be used together with --publish.");
+  if (shouldPublish && shouldUpdate) {
+    throw new Error("Choose either --publish or --update, not both.");
   }
 
   if (!input) {
     console.error(
-      "Usage: node blog-publish.js <notion-page-url> [--publish] [--update] [--repo=/path/to/blog]"
+      "Usage: node blog-publish.js <notion-page-url> [--publish | --update] [--repo=/path/to/blog]"
     );
     process.exit(1);
   }
@@ -369,7 +374,7 @@ async function main() {
     throw new Error(`Could not find Jekyll _posts directory: ${postsDir}`);
   }
 
-  if (shouldPublish) {
+  if (shouldPush) {
     const existingChanges = run("git status --porcelain", blogRepo);
 
     if (existingChanges) {
@@ -406,6 +411,10 @@ async function main() {
   const tags = getMultiSelectProperty(page, "Tags");
   const featured = getCheckboxProperty(page, "Featured");
   const thumbnail = getFileProperty(page, "Thumbnail");
+  const publicationStatus = getStatusProperty(
+    page,
+    "Publication status"
+  );
 
   if (!publishDate) {
     throw new Error("Publish date is missing in Notion.");
@@ -427,15 +436,25 @@ async function main() {
     ? richTextToMarkdown(titleProperty.title)
     : "(untitled)";
 
+  if (shouldPublish && publicationStatus === "Published") {
+    throw new Error(
+      "This post has already been published. Use --update instead."
+    );
+  }
+
   let publishedFile = "";
 
   if (shouldUpdate) {
-    const publicationStatus = getStatusProperty(page, "Publication status");
     publishedFile = getRichTextProperty(page, "Published file");
-    const updateRequested = getCheckboxProperty(page, "Update request");
+    const updateRequested = getCheckboxProperty(
+      page,
+      "Update request"
+    );
 
     if (publicationStatus !== "Published") {
-      throw new Error("Only an already-published post can be updated.");
+      throw new Error(
+        "Only an already-published post can be updated."
+      );
     }
 
     if (!publishedFile) {
@@ -443,23 +462,33 @@ async function main() {
     }
 
     if (!updateRequested) {
-      throw new Error("Update request is not checked in Notion.");
+      throw new Error(
+        "Update request is not checked in Notion."
+      );
     }
   }
 
   const proposedSlug = slugify(title);
   const proposedFilename = `${publishDate}-${proposedSlug}.md`;
-  const filename = shouldUpdate ? publishedFile : proposedFilename;
+
+  const filename = shouldUpdate
+    ? publishedFile
+    : proposedFilename;
 
   if (path.basename(filename) !== filename) {
-    throw new Error(`Published file must be a filename, not a path: ${filename}`);
+    throw new Error(
+      `Published file must be a filename, not a path: ${filename}`
+    );
   }
 
   const publishedStem = path.basename(filename, ".md");
   const assetDate = publishedStem.slice(0, 10);
   const assetSlug = publishedStem.slice(11);
 
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(assetDate) || !assetSlug) {
+  if (
+    !/^\d{4}-\d{2}-\d{2}$/.test(assetDate) ||
+    !assetSlug
+  ) {
     throw new Error(
       `Published file does not match YYYY-MM-DD-slug.md: ${filename}`
     );
@@ -469,14 +498,17 @@ async function main() {
 
   if (shouldUpdate) {
     if (!fs.existsSync(outputPath)) {
-      throw new Error(`Published post does not exist: ${outputPath}`);
+      throw new Error(
+        `Published post does not exist: ${outputPath}`
+      );
     }
   } else if (fs.existsSync(outputPath)) {
     throw new Error(`Post already exists: ${outputPath}`);
   }
 
   const assetsDir = path.join(blogRepo, "assets", "img");
-  const assetPrefix = `${assetDate.replaceAll("-", "")}-${assetSlug}-`;
+  const assetPrefix =
+    `${assetDate.replaceAll("-", "")}-${assetSlug}-`;
 
   const previousAssets =
     shouldUpdate && fs.existsSync(assetsDir)
@@ -489,21 +521,38 @@ async function main() {
   let thumbnailPath = "";
 
   if (thumbnail) {
-    const originalExt = path.extname(thumbnail.name) || ".png";
-    const thumbnailFilename = `${assetDate.replaceAll("-", "")}-${assetSlug}-thumbnail${originalExt}`;
+    const originalExt =
+      path.extname(thumbnail.name) || ".png";
+
+    const thumbnailFilename =
+      `${assetDate.replaceAll("-", "")}-${assetSlug}-thumbnail${originalExt}`;
 
     thumbnailPath = `assets/img/${thumbnailFilename}`;
 
-    const absoluteThumbnailPath = path.join(blogRepo, thumbnailPath);
+    const absoluteThumbnailPath = path.join(
+      blogRepo,
+      thumbnailPath
+    );
 
-    if (fs.existsSync(absoluteThumbnailPath) && !shouldUpdate) {
-      throw new Error(`Thumbnail already exists: ${absoluteThumbnailPath}`);
+    if (
+      fs.existsSync(absoluteThumbnailPath) &&
+      !shouldUpdate
+    ) {
+      throw new Error(
+        `Thumbnail already exists: ${absoluteThumbnailPath}`
+      );
     }
 
-    await downloadImage(thumbnail.url, absoluteThumbnailPath);
+    await downloadImage(
+      thumbnail.url,
+      absoluteThumbnailPath
+    );
+
     generatedFiles.push(absoluteThumbnailPath);
 
-    console.log(`Downloaded thumbnail: ${thumbnailPath}`);
+    console.log(
+      `Downloaded thumbnail: ${thumbnailPath}`
+    );
   }
 
   const blocks = await getAllChildren(pageId);
@@ -517,9 +566,14 @@ async function main() {
   if (
     first?.type === "paragraph" &&
     first.paragraph.rich_text.length > 0 &&
-    first.paragraph.rich_text.every(x => x.annotations?.italic)
+    first.paragraph.rich_text.every(
+      x => x.annotations?.italic
+    )
   ) {
-    subtitle = first.paragraph.rich_text.map(x => x.plain_text).join("");
+    subtitle = first.paragraph.rich_text
+      .map(x => x.plain_text)
+      .join("");
+
     bodyBlocks = blocks.slice(1);
 
     // If the subtitle is followed by a divider in Notion,
@@ -555,12 +609,18 @@ async function main() {
     );
 
     for (const oldFile of previousAssets) {
-      if (!newAssetSet.has(path.resolve(oldFile)) && fs.existsSync(oldFile)) {
+      if (
+        !newAssetSet.has(path.resolve(oldFile)) &&
+        fs.existsSync(oldFile)
+      ) {
         fs.unlinkSync(oldFile);
         generatedFiles.push(oldFile);
 
         console.log(
-          `Removed obsolete image: ${path.relative(blogRepo, oldFile)}`
+          `Removed obsolete image: ${path.relative(
+            blogRepo,
+            oldFile
+          )}`
         );
       }
     }
@@ -603,10 +663,14 @@ async function main() {
   fs.writeFileSync(outputPath, postContent, "utf8");
   generatedFiles.push(outputPath);
 
-  console.log(`${shouldUpdate ? "Updated" : "Created"}: ${outputPath}`);
+  console.log(
+    `${shouldUpdate ? "Updated" : "Created"}: ${outputPath}`
+  );
 
-  if (!shouldPublish) {
-    console.log("Dry run only. Nothing committed or pushed.");
+  if (!shouldPush) {
+    console.log(
+      "Dry run only. Nothing committed or pushed."
+    );
     return;
   }
 
@@ -620,20 +684,33 @@ async function main() {
   console.log("\nJekyll build passed.");
 
   const relativeGeneratedFiles = [
-    ...new Set(generatedFiles.map(file => path.relative(blogRepo, file))),
+    ...new Set(
+      generatedFiles.map(file =>
+        path.relative(blogRepo, file)
+      )
+    ),
   ];
 
-  execFileSync("git", ["add", "--", ...relativeGeneratedFiles], {
-    cwd: blogRepo,
-    stdio: "inherit",
-  });
+  execFileSync(
+    "git",
+    ["add", "--", ...relativeGeneratedFiles],
+    {
+      cwd: blogRepo,
+      stdio: "inherit",
+    }
+  );
 
-const stagedFiles = run("git diff --cached --name-only", blogRepo)
-  .split("\n")
-  .filter(Boolean)
-  .sort();
+  const stagedFiles = run(
+    "git diff --cached --name-only",
+    blogRepo
+  )
+    .split("\n")
+    .filter(Boolean)
+    .sort();
 
-  const allowedFiles = new Set(relativeGeneratedFiles);
+  const allowedFiles = new Set(
+    relativeGeneratedFiles
+  );
 
   const unexpectedFiles = stagedFiles.filter(
     file => !allowedFiles.has(file)
@@ -641,18 +718,25 @@ const stagedFiles = run("git diff --cached --name-only", blogRepo)
 
   if (unexpectedFiles.length) {
     throw new Error(
-      `Unexpected staged files detected:\n${unexpectedFiles.join("\n")}`
+      `Unexpected staged files detected:\n${unexpectedFiles.join(
+        "\n"
+      )}`
     );
   }
 
   if (!stagedFiles.length) {
-    throw new Error("No changes detected to publish.");
+    throw new Error(
+      "No changes detected to publish."
+    );
   }
-  
-  const commitPrefix = shouldUpdate ? "Update" : "Publish";
+
+  const commitPrefix =
+    shouldUpdate ? "Update" : "Publish";
 
   execSync(
-    `git commit -m ${JSON.stringify(`${commitPrefix}: ${title}`)}`,
+    `git commit -m ${JSON.stringify(
+      `${commitPrefix}: ${title}`
+    )}`,
     {
       cwd: blogRepo,
       stdio: "inherit",
@@ -666,15 +750,25 @@ const stagedFiles = run("git diff --cached --name-only", blogRepo)
     stdio: "inherit",
   });
 
-  await writePublicationState(pageId, filename);
-  console.log("Updated publication state in Notion.");
+  await writePublicationState(
+    pageId,
+    filename
+  );
+
+  console.log(
+    "Updated publication state in Notion."
+  );
 
   if (shouldUpdate) {
     await clearUpdateRequest(pageId);
-    console.log("Cleared Update request in Notion.");
+    console.log(
+      "Cleared Update request in Notion."
+    );
   }
 
-  console.log(`\n${shouldUpdate ? "Updated" : "Published"}: ${title}`);
+  console.log(
+    `\n${shouldUpdate ? "Updated" : "Published"}: ${title}`
+  );
 }
 
 main().catch(error => {
