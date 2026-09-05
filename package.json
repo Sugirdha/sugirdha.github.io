@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "blog:publish": "node scripts/blog-publish.js",
-    "blog:poll": "node scripts/blog-poll.js"
+    "blog:poll": "node scripts/blog-poll.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@notionhq/client": "^5.0.0"
