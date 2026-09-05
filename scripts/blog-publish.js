@@ -628,19 +628,27 @@ async function main() {
     stdio: "inherit",
   });
 
-  const stagedFiles = run("git diff --cached --name-only", blogRepo)
-    .split("\n")
-    .filter(Boolean)
-    .sort();
+const stagedFiles = run("git diff --cached --name-only", blogRepo)
+  .split("\n")
+  .filter(Boolean)
+  .sort();
 
-  const expectedFiles = [...relativeGeneratedFiles].sort();
+  const allowedFiles = new Set(relativeGeneratedFiles);
 
-  if (JSON.stringify(stagedFiles) !== JSON.stringify(expectedFiles)) {
+  const unexpectedFiles = stagedFiles.filter(
+    file => !allowedFiles.has(file)
+  );
+
+  if (unexpectedFiles.length) {
     throw new Error(
-      `Unexpected staged files detected:\n${stagedFiles.join("\n")}`
+      `Unexpected staged files detected:\n${unexpectedFiles.join("\n")}`
     );
   }
 
+  if (!stagedFiles.length) {
+    throw new Error("No changes detected to publish.");
+  }
+  
   const commitPrefix = shouldUpdate ? "Update" : "Publish";
 
   execSync(
