@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "✍️ Built to Share"
+title: "Built to Share"
 subtitle: "The Philosophy Behind Open Source"
 thumbnail-img: assets/img/20260925-built-to-share-thumbnail.png
 share-img: assets/img/20260925-built-to-share-thumbnail.png
@@ -22,7 +22,7 @@ Anyone could see the code. Anyone could look for weaknesses in it. Code is wide 
 
 Instead, I realised I had walked right into an ongoing debate on whether to use open source or not. My two interviewers had varying points of view in this matter. Like me, one of them was cautious of using open source solutions. The other was supportive of using something that many people had eyes on. 
 
-While it was a memorable interview experience and my first actual tech discussion, I remember realising that something I had assumed had an obvious answer apparently did not. 
+While it was a memorable interview experience and my first actual tech discussion, I remember realising that something I had assumed had an obvious answer apparently did not.
 
 ### **If everyone can see it, isn’t that a problem?**
 
