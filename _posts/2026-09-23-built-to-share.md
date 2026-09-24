@@ -2,15 +2,15 @@
 layout: post
 title: "Built to Share"
 subtitle: "The Philosophy Behind Open Source"
-thumbnail-img: assets/img/20260925-built-to-share-thumbnail.png
-share-img: assets/img/20260925-built-to-share-thumbnail.png
+thumbnail-img: assets/img/20260923-built-to-share-thumbnail.png
+share-img: assets/img/20260923-built-to-share-thumbnail.png
 author: Sugirdha
 featured: true
 excerpt: "My first encounter with open source came with a question of trust. Years later, looking back at everything from Project Gutenberg to the libraries developers build on every day, I see something bigger: the value of making work accessible, building on what others have started, and leaving something a little better for the next person."
 tags: [open source, WomenDevsSG, GitHub, collaboration, software development, community]
 ---
 
-![](/assets/img/20260925-built-to-share-header.png){:.center-image}
+![](/assets/img/20260923-built-to-share-header.png){:.center-image}
 
 My first proper encounter with the open-source debate happened during my very first job interview.
 
@@ -20,7 +20,7 @@ During the code walkthrough, I brought it up apologetically. Given more time, I 
 
 Anyone could see the code. Anyone could look for weaknesses in it. Code is wide open to invite attackers. Something we built and controlled ourselves would be safer. I expected that to be a fairly uncontroversial statement.
 
-Instead, I realised I had walked right into an ongoing debate on whether to use open source or not. My two interviewers had varying points of view in this matter. Like me, one of them was cautious of using open source solutions. The other was supportive of using something that many people had eyes on. 
+Instead, I realised I had walked right into an ongoing debate on whether to use open source or not. My two interviewers had varying points of view in this matter. Like me, one of them was cautious about using open source solutions. The other was supportive of using something that many people had eyes on. 
 
 While it was a memorable interview experience and my first actual tech discussion, I remember realising that something I had assumed had an obvious answer apparently did not.
 
@@ -40,7 +40,7 @@ Actually, my first experience with the idea of making something freely available
 
 Project Gutenberg.
 
-![](/assets/img/20260925-built-to-share-image-01.png){:.center-image}
+![](/assets/img/20260923-built-to-share-image-01.png){:.center-image}
 
 I used to spend a lot of time there, discovering classic literature. Thousands of books, freely available to anyone who wanted to read them. I didn't have to own every book I wanted to read. I could simply pick one up and explore an unfamiliar subject or know a new author.
 
@@ -68,7 +68,7 @@ Beauty of this is making something a little better for the next person who comes
 
 This October, Women Devs Singapore is organising a [Community Coding Month](https://www.linkedin.com/posts/women-devs-sg_womenintech-opensource-communitycoding-activity-7502516021799473152-lmHp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAANhupUBXTacANAAMephtrh_gMG0GmUzSak){:target="_blank"}, encouraging developers and women-in-tech to contribute to our [GitHub repositories](https://github.com/Women-Devs-SG){:target="_blank"}.
 
-![](/assets/img/20260925-built-to-share-image-02.png){:.center-image}
+![](/assets/img/20260923-built-to-share-image-02.png){:.center-image}
 
 And I think it's a great opportunity to experience open source from the other side. You don't even have to come up with an original idea. You could make use of what others from WDS have already shared for the benefit of others. You could fix a bug, improve a feature, add a small capability or write a test.
 
