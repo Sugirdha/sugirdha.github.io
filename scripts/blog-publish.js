@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const { execSync, execFileSync } = require("child_process");
 const { Client } = require("@notionhq/client");
 
@@ -69,6 +70,7 @@ async function blockToMarkdown(
     imageIndex,
     generatedFiles,
     shouldUpdate,
+    allowExistingAssets,
   }
 ) {
   const data = block[block.type];
@@ -124,7 +126,11 @@ async function blockToMarkdown(
       const relativePath = `assets/img/${assetName}`;
       const absolutePath = path.join(blogRepo, relativePath);
 
-      if (fs.existsSync(absolutePath) && !shouldUpdate) {
+      if (
+        fs.existsSync(absolutePath) &&
+        !shouldUpdate &&
+        !allowExistingAssets
+      ) {
         throw new Error(`Image already exists: ${absolutePath}`);
       }
 
@@ -253,6 +259,29 @@ function getFileProperty(page, name) {
   return null;
 }
 
+function validateAutomationSchema(page) {
+  const expected = {
+    "Automation state": "select",
+    "Last failure": "rich_text",
+    "Failed at": "date",
+    "Retry request": "checkbox",
+  };
+  const problems = [];
+
+  for (const [name, type] of Object.entries(expected)) {
+    const property = page.properties?.[name];
+
+    if (!property) problems.push(`${name} is missing`);
+    else if (property.type !== type) {
+      problems.push(`${name} must be ${type}, found ${property.type}`);
+    }
+  }
+
+  if (problems.length) {
+    throw new Error(`Notion retry schema is not ready: ${problems.join("; ")}`);
+  }
+}
+
 async function downloadImage(url, destination) {
   const response = await fetch(url);
 
@@ -317,32 +346,140 @@ function guessPublishedUrl(filename) {
   return `https://sugirdha.github.io/${slug}/`;
 }
 
-async function writePublicationState(pageId, filename) {
-  await notion.pages.update({
-    page_id: pageId,
-    properties: {
-      "Publication status": {
-        select: { name: "Published" },
-      },
-      "Published file": {
-        rich_text: richTextValue(filename),
-      },
-      "Published URL": {
-        url: guessPublishedUrl(filename),
-      },
+function publicationProperties(filename, mode) {
+  return {
+    "Publication status": {
+      select: { name: "Published" },
     },
-  });
+    "Published file": {
+      rich_text: richTextValue(filename),
+    },
+    "Published URL": {
+      url: guessPublishedUrl(filename),
+    },
+    [mode === "update" ? "Update request" : "Publish request"]: {
+      checkbox: false,
+    },
+    "Automation state": {
+      select: { name: "Ready" },
+    },
+    "Last failure": {
+      rich_text: [],
+    },
+    "Failed at": {
+      date: null,
+    },
+    "Retry request": {
+      checkbox: false,
+    },
+  };
 }
 
-async function clearUpdateRequest(pageId) {
-  await notion.pages.update({
-    page_id: pageId,
-    properties: {
-      "Update request": {
-        checkbox: false,
-      },
-    },
-  });
+function publicationStateMatches(page, filename, mode) {
+  return (
+    getStatusProperty(page, "Publication status") === "Published" &&
+    getRichTextProperty(page, "Published file") === filename &&
+    page.properties?.["Published URL"]?.url === guessPublishedUrl(filename) &&
+    getCheckboxProperty(
+      page,
+      mode === "update" ? "Update request" : "Publish request"
+    ) === false &&
+    getStatusProperty(page, "Automation state") === "Ready" &&
+    getCheckboxProperty(page, "Retry request") === false
+  );
+}
+
+async function writePublicationStateSafely(
+  notionClient,
+  pageId,
+  filename,
+  mode
+) {
+  try {
+    await notionClient.pages.update({
+      page_id: pageId,
+      properties: publicationProperties(filename, mode),
+    });
+  } catch (writeError) {
+    try {
+      const currentPage = await notionClient.pages.retrieve({ page_id: pageId });
+
+      if (publicationStateMatches(currentPage, filename, mode)) {
+        console.log(
+          "Notion write returned an error, but the completed state was verified."
+        );
+        return;
+      }
+    } catch {}
+
+    throw writeError;
+  }
+}
+
+function fileDigest(filename) {
+  return crypto
+    .createHash("sha256")
+    .update(fs.readFileSync(filename))
+    .digest("hex");
+}
+
+function snapshotFiles(filenames) {
+  return new Map(
+    filenames
+      .filter(filename => fs.existsSync(filename))
+      .map(filename => [path.resolve(filename), fileDigest(filename)])
+  );
+}
+
+function verifyExistingPublication(snapshot, expectedFiles, relevantFiles) {
+  const expected = [...new Set(expectedFiles.map(file => path.resolve(file)))].sort();
+  const relevant = [...new Set(relevantFiles.map(file => path.resolve(file)))].sort();
+
+  if (
+    expected.length !== relevant.length ||
+    expected.some((filename, index) => filename !== relevant[index])
+  ) {
+    return false;
+  }
+
+  return expected.every(
+    filename =>
+      snapshot.get(filename) &&
+      fs.existsSync(filename) &&
+      snapshot.get(filename) === fileDigest(filename)
+  );
+}
+
+function pushAndConfirm(blogRepo, { exec = execSync, read = run } = {}) {
+  try {
+    exec("git push", {
+      cwd: blogRepo,
+      stdio: "inherit",
+    });
+    return { reconciled: false };
+  } catch (pushError) {
+    try {
+      const localHead = read("git rev-parse HEAD", blogRepo);
+      const remoteLine = read(
+        "git ls-remote origin refs/heads/main",
+        blogRepo
+      );
+      const remoteHead = remoteLine.split(/\s+/)[0];
+
+      if (remoteHead && remoteHead === localHead) {
+        console.log(
+          "Push returned an error, but origin/main contains the exact commit."
+        );
+        return { reconciled: true };
+      }
+    } catch {}
+
+    throw pushError;
+  }
+}
+
+async function writePublicationState(pageId, filename, mode) {
+  await writePublicationStateSafely(notion, pageId, filename, mode);
 }
 
 async function main() {
@@ -405,6 +542,8 @@ async function main() {
   const page = await notion.pages.retrieve({
     page_id: pageId,
   });
+
+  validateAutomationSchema(page);
 
   const publishDate = getDateProperty(page, "Publish date");
   const excerpt = getRichTextProperty(page, "Excerpt");
@@ -495,6 +634,8 @@ async function main() {
   }
 
   const outputPath = path.join(postsDir, filename);
+  const existingPublishCandidate =
+    shouldPublish && fs.existsSync(outputPath);
 
   if (shouldUpdate) {
     if (!fs.existsSync(outputPath)) {
@@ -502,7 +643,7 @@ async function main() {
         `Published post does not exist: ${outputPath}`
       );
     }
-  } else if (fs.existsSync(outputPath)) {
+  } else if (!shouldPublish && fs.existsSync(outputPath)) {
     throw new Error(`Post already exists: ${outputPath}`);
   }
 
@@ -511,12 +652,16 @@ async function main() {
     `${assetDate.replaceAll("-", "")}-${assetSlug}-`;
 
   const previousAssets =
-    shouldUpdate && fs.existsSync(assetsDir)
+    (shouldUpdate || existingPublishCandidate) && fs.existsSync(assetsDir)
       ? fs
           .readdirSync(assetsDir)
           .filter(name => name.startsWith(assetPrefix))
           .map(name => path.join(assetsDir, name))
       : [];
+
+  const existingPublicationSnapshot = existingPublishCandidate
+    ? snapshotFiles([outputPath, ...previousAssets])
+    : null;
 
   let thumbnailPath = "";
 
@@ -536,7 +681,8 @@ async function main() {
 
     if (
       fs.existsSync(absoluteThumbnailPath) &&
-      !shouldUpdate
+      !shouldUpdate &&
+      !existingPublishCandidate
     ) {
       throw new Error(
         `Thumbnail already exists: ${absoluteThumbnailPath}`
@@ -595,6 +741,7 @@ async function main() {
         imageIndex,
         generatedFiles,
         shouldUpdate,
+        allowExistingAssets: existingPublishCandidate,
       })
     );
 
@@ -663,6 +810,31 @@ async function main() {
   fs.writeFileSync(outputPath, postContent, "utf8");
   generatedFiles.push(outputPath);
 
+  if (existingPublishCandidate) {
+    const currentAssets = fs.existsSync(assetsDir)
+      ? fs
+          .readdirSync(assetsDir)
+          .filter(name => name.startsWith(assetPrefix))
+          .map(name => path.join(assetsDir, name))
+      : [];
+
+    if (
+      !verifyExistingPublication(
+        existingPublicationSnapshot,
+        generatedFiles,
+        [outputPath, ...currentAssets]
+      )
+    ) {
+      throw new Error(
+        `Existing post or assets do not exactly match the requested publication: ${filename}`
+      );
+    }
+
+    console.log(
+      "Verified that the requested post and complete asset set already exist on origin/main."
+    );
+  }
+
   console.log(
     `${shouldUpdate ? "Updated" : "Created"}: ${outputPath}`
   );
@@ -724,55 +896,53 @@ async function main() {
     );
   }
 
-  if (!stagedFiles.length) {
-    throw new Error(
-      "No changes detected to publish."
+  if (stagedFiles.length) {
+    const commitPrefix = shouldUpdate ? "Update" : "Publish";
+
+    execSync(
+      `git commit -m ${JSON.stringify(`${commitPrefix}: ${title}`)}`,
+      {
+        cwd: blogRepo,
+        stdio: "inherit",
+      }
+    );
+
+    console.log("\nPushing to GitHub...");
+    pushAndConfirm(blogRepo);
+  } else {
+    console.log(
+      "No Git changes needed; regenerated post and assets match origin/main."
     );
   }
 
-  const commitPrefix =
-    shouldUpdate ? "Update" : "Publish";
-
-  execSync(
-    `git commit -m ${JSON.stringify(
-      `${commitPrefix}: ${title}`
-    )}`,
-    {
-      cwd: blogRepo,
-      stdio: "inherit",
-    }
-  );
-
-  console.log("\nPushing to GitHub...");
-
-  execSync("git push", {
-    cwd: blogRepo,
-    stdio: "inherit",
-  });
-
   await writePublicationState(
     pageId,
-    filename
+    filename,
+    shouldUpdate ? "update" : "publish"
   );
 
   console.log(
     "Updated publication state in Notion."
   );
 
-  if (shouldUpdate) {
-    await clearUpdateRequest(pageId);
-    console.log(
-      "Cleared Update request in Notion."
-    );
-  }
-
   console.log(
     `\n${shouldUpdate ? "Updated" : "Published"}: ${title}`
   );
 }
 
-main().catch(error => {
-  console.error("\nFailed:");
-  console.error(error.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(error => {
+    console.error("\nFailed:");
+    console.error(error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  publicationProperties,
+  publicationStateMatches,
+  pushAndConfirm,
+  snapshotFiles,
+  verifyExistingPublication,
+  writePublicationStateSafely,
+};

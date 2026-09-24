@@ -3,12 +3,17 @@ name: Blog Publish Poller
 on:
   workflow_dispatch:
 
+concurrency:
+  group: blog-publish-poller
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
 jobs:
   poll:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Check out blog
